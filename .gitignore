@@ -1,14 +1,17 @@
-# Ignorelist
-#
-# Docs for .gitignore:
-# https://git-scm.com/docs/gitignore
-
-# Folders to ignore
-build/
-.gradle/
-.settings/
-bin/
-
-# Files to ignore
+# Eclipse
 .classpath
 .project
+.settings/
+.metadata/
+bin/
+
+# IntelliJ
+*.iml
+*.ipr
+*.iws
+.idea/
+out/
+
+# Gradle
+.gradle/
+build/

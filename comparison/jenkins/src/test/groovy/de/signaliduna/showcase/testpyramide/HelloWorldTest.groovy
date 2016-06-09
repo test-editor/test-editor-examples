@@ -1,22 +1,21 @@
 package de.signaliduna.showcase.testpyramide
 
-import spock.lang.Specification;
-import sun.security.mscapi.PRNG;
+import spock.lang.Specification
 
-class HelloWorldTest extends Specification{
+class HelloWorldTest extends Specification {
 
-  def helloWorld
-  
-  def setup() {
-    helloWorld = new HelloWorld()
-  }
+    def helloWorld
 
-  def "simple hello world string is printed"() {
+    def setup() {
+        helloWorld = new HelloWorld()
+    }
 
-    when:
-    def printHelloWorld = helloWorld.printHelloWorld()
+    def "simple hello world string is printed"() {
 
-    then:
-    printHelloWorld.equals("Hello World")
-  }
+        when:
+        def printHelloWorld = helloWorld.printHelloWorld()
+
+        then:
+        printHelloWorld.equals("Hello World")
+    }
 }
