@@ -11,6 +11,13 @@ buildscript {
 
 }
 
+plugins {
+    id "de.undercouch.download" version "3.0.0"
+}
+
+import de.undercouch.gradle.tasks.download.Download
+import de.undercouch.gradle.tasks.download.Verify
+
 // Apply the java plugin to add support for Java
 apply plugin: "java"
 apply plugin: "groovy"
@@ -50,4 +57,41 @@ dependencies {
     testRuntime "cglib:cglib-nodep:3.1"          // allows mocking of classes (in addition to interfaces)
     testRuntime "org.objenesis:objenesis:2.1"    // allows mocking of classes without default constructor (together with CGLIB)
 
+}
+
+def jenkinsFolder = "$buildDir/jenkins"
+def jenkinsHome = "$jenkinsFolder/.jenkins"
+
+task downloadJenkins(type: Download) {
+    // TODO would be nice to have Jenkins 2, but setup is a bit more complicated
+    src 'http://mirrors.jenkins-ci.org/war-stable/1.651.2/jenkins.war'
+    dest "$jenkinsFolder/jenkins.war"
+    onlyIfNewer true
+}
+
+task verifyJenkins(type: Verify, dependsOn: downloadJenkins) {
+    src new File(jenkinsFolder, 'jenkins.war')
+    algorithm 'SHA-256'
+    checksum '1e239db19071beaac3f2db3ec6a568346bbeb9087f5f0fcf19adf6ae62cbcc2b'
+}
+
+task setupJenkins(type: Copy, dependsOn: verifyJenkins) {
+    from 'jenkinsHome'
+    into jenkinsHome
+}
+
+clean {
+    delete jenkinsHome
+}
+
+task startJenkins(type: Exec, dependsOn: setupJenkins) {
+    doFirst {
+        logger.lifecycle('Running Jenkins. Login with user: admin password: NotReallyASecret')
+    }
+    commandLine 'java', '-jar', "$jenkinsFolder/jenkins.war"
+    environment('JENKINS_HOME', jenkinsHome)
+    standardOutput = new ByteArrayOutputStream()
+    ext.output = {
+        return standardOutput.toString()
+    }
 }

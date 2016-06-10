@@ -15,7 +15,7 @@ public class JenkinsClient {
     private static final String REQUEST_PARAM_NAME = "name=";
     private static final String CREATE_OPERATION = "/createItem";
     private static final String DELETE_OPERATION = "/doDelete";
-    private static final String BASE_URL = "http://jenkinsUserSsKey@localhost:8080";
+    private static final String BASE_URL = "http://admin:3c6645a45456c250d26581cc1c52d22b@localhost:8080";
 
     public String createJob(String name, File jobConfigFile) {
         Client client = ClientBuilder.newClient();
