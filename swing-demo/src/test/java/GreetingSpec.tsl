@@ -1,0 +1,7 @@
+package org.testeditor.demo.swing
+
+# GreetingSpec
+
+* Start the famous greetings application.
+* Send greetings "Hello World" to the world.
+* Stop the famous greeting application.  
