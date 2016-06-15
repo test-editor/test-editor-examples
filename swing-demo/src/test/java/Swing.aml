@@ -6,7 +6,7 @@ import org.testeditor.fixture.swing.SwingFixture
  * Defines a Swing application.
  */
 component type Application {
-	interactions = start, stop, wait
+	interactions = start, stop
 }
 
 interaction type start {
@@ -17,11 +17,6 @@ interaction type start {
 interaction type stop {
 	template = "Stop application"
 	method = SwingFixture.stopApplication
-}
-
-interaction type wait {
-	template = "Wait" ${miliSeconds} "ms"
-	method = SwingFixture.waitMilliSeconds(miliSeconds)
 }
 
 /**

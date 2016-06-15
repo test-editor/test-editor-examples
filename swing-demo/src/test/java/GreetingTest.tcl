@@ -4,19 +4,18 @@ package org.testeditor.demo.swing
  
 * Start the famous greetings application. 
  
-    Mask: GreetingApplication
+    Component: GreetingApplication
     - Start application "org.testeditor.demo.swing.GreetingApplication"
  
 * Send greetings "Hello World" to the world.
  
-    Mask: GreetingApplication
+    Component: GreetingApplication
     - Insert "Hello World" into field <Input> 
     - Click on <GreetButton>
-    - Wait "2000" ms
     - foo = Read text from <Output>
     - assert foo == "Hello World"
  
 * Stop the famous greeting application.
 
-	Mask: GreetingApplication
+	Component: GreetingApplication
 	- Stop application
