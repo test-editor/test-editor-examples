@@ -25,50 +25,46 @@ import javax.swing.SwingConstants;
 
 public class GreetingApplication extends JFrame {
 
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    public GreetingApplication() {
-        JPanel panel = new JPanel(new GridLayout(2, 1));
-        getContentPane().add(panel);
+	public GreetingApplication() {
+		JPanel panel = new JPanel(new GridLayout(2, 1));
+		getContentPane().add(panel);
 
-        // Create input area
-        JPanel inputArea = new JPanel(new GridLayout(1, 3));
-        panel.add(inputArea);
-        inputArea.add(new JLabel("Your greeting:"));
-        final JTextField input = new JTextField("");
-        input.setName("text.input");
-        inputArea.add(input);
-        JButton button = new JButton("Greet");
-        button.setName("button.greet");
-        inputArea.add(button);
+		// Create input area
+		JPanel inputArea = new JPanel(new GridLayout(1, 3));
+		panel.add(inputArea);
+		inputArea.add(new JLabel("Your greeting:"));
+		final JTextField input = new JTextField("");
+		input.setName("text.input");
+		inputArea.add(input);
+		JButton button = new JButton("Greet");
+		button.setName("button.greet");
+		inputArea.add(button);
 
-        // Create output area
-        JPanel outputArea = new JPanel(new GridLayout(1, 1));
-        panel.add(outputArea);
-        final JTextField greeting = new JTextField("Greet me!");
-        greeting.setName("text.output");
-        greeting.setEnabled(false);
-        greeting.setHorizontalAlignment(SwingConstants.CENTER);
-        outputArea.add(greeting);
+		// Create output area
+		JPanel outputArea = new JPanel(new GridLayout(1, 1));
+		panel.add(outputArea);
+		final JTextField greeting = new JTextField("Greet me!");
+		greeting.setName("text.output");
+		greeting.setEnabled(false);
+		greeting.setHorizontalAlignment(SwingConstants.CENTER);
+		outputArea.add(greeting);
 
-        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        setSize(500, 200);
-        setVisible(true);
+		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+		setSize(500, 200);
+		setVisible(true);
 
-        button.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                greeting.setText(input.getText());
-            }
-        });
-    }
-    
-    public static void main(String[] args) {
-        new GreetingApplication();
-    }
-    
-    public String sayHello() {
-    	return "Hello Service";
-    }
+		button.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				greeting.setText(input.getText());
+			}
+		});
+	}
+
+	public static void main(String[] args) {
+		new GreetingApplication();
+	}
 
 }
