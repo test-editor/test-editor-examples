@@ -35,7 +35,7 @@ void testWithMaven(String folder) {
 
 void withXvfb(def body) {
     // TODO why do we have more than one installation on our Jenkins? If we had one we wouldn't need to specify the installationName
-    wrap([$class: 'Xvfb', installationName: 'System', timeout: 2, screen: '1024x768x24', displayNameOffset: 1, parallelBuild: true], body)
+    wrap([$class: 'Xvfb', installationName: 'System', timeout: 2, screen: '1024x768x24', displayNameOffset: 1, autoDisplayName: true], body)
 }
 
 /** Calls Maven with the given argument and adds the -B (batch) and -V (version) flag. */
