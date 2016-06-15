@@ -21,6 +21,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
 public class GreetingApplication extends JFrame {
 
@@ -42,11 +43,12 @@ public class GreetingApplication extends JFrame {
         inputArea.add(button);
 
         // Create output area
-        JPanel outputArea = new JPanel();
+        JPanel outputArea = new JPanel(new GridLayout(1, 1));
         panel.add(outputArea);
         final JTextField greeting = new JTextField("Greet me!");
         greeting.setName("text.output");
         greeting.setEnabled(false);
+        greeting.setHorizontalAlignment(SwingConstants.CENTER);
         outputArea.add(greeting);
 
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
