@@ -84,14 +84,18 @@ clean {
     delete jenkinsHome
 }
 
-task startJenkins(type: Exec, dependsOn: setupJenkins) {
-    doFirst {
-        logger.lifecycle('Running Jenkins. Login with user: admin password: NotReallyASecret')
-    }
-    commandLine 'java', '-jar', "$jenkinsFolder/jenkins.war"
-    environment('JENKINS_HOME', jenkinsHome)
-    standardOutput = new ByteArrayOutputStream()
-    ext.output = {
-        return standardOutput.toString()
+task startJenkins(type: ExecWait, dependsOn: setupJenkins) {
+    command "java -DJENKINS_HOME=$jenkinsHome -jar $jenkinsFolder/jenkins.war"
+    ready "Jenkins is fully up and running"
+    directory "$buildDir"
+    doLast {
+        logger.lifecycle("Running Jenkins. Login with user: admin password: NotReallyASecret")
     }
 }
+
+task stopJenkins << {
+    startJenkins.stopProcess()
+}
+
+test.dependsOn startJenkins
+test.finalizedBy stopJenkins
