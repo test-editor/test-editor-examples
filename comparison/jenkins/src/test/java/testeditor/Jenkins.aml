@@ -1,0 +1,25 @@
+package testeditor
+
+import org.testeditor.example.jenkins.*
+
+component JenkinsInstance is Jenkins {
+}
+
+component type Jenkins {
+	interactions = createJob, deleteJob, checkIfJobExists
+}
+
+interaction type createJob {
+	template = "Create job" ${name} "with config" ${fileName}
+	method = JenkinsClient.createJob(name, fileName)
+}
+
+interaction type deleteJob {
+	template = "Delete job" ${name}
+	method = JenkinsClient.deleteJob(name)
+}
+
+interaction type checkIfJobExists {
+	template = "Check that job" ${name} "exists"
+	method = JenkinsClient.checkIfJobExists(name)
+}

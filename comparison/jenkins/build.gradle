@@ -11,6 +11,7 @@ buildscript {
 
 plugins {
     id "de.undercouch.download" version "3.0.0"
+    id 'org.testeditor.gradle-plugin' version '0.2'
 }
 
 import de.undercouch.gradle.tasks.download.Download
@@ -27,10 +28,15 @@ sourceCompatibility = 1.8
 repositories {
     jcenter()
 	maven { url "http://dl.bintray.com/test-editor/Fixtures" }
+    maven { url "http://dl.bintray.com/test-editor/test-editor-maven" }
 }
 
 bootRepackage {
     enabled = false
+}
+
+testeditor {
+    version '1.0.0'
 }
 
 dependencies {
@@ -61,6 +67,9 @@ dependencies {
     testRuntime "org.objenesis:objenesis:2.1"    // allows mocking of classes without default constructor (together with CGLIB)
 
 	testCompile 'com.offbytwo.jenkins:jenkins-client:0.3.5'
+
+	// Test-Editor
+	testCompile 'org.testeditor.fixture:core-fixture:2.5.2'
 }
 
 def jenkinsFolder = "$buildDir/jenkins"
