@@ -105,5 +105,6 @@ test {
 	systemProperty 'JENKINS_PORT', jenkinsPort
 }
 
+startJenkins.shouldRunAfter testClasses
 test.dependsOn startJenkins
 test.finalizedBy stopJenkins
