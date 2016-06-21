@@ -8,7 +8,7 @@ nodeWithProperWorkspace {
     testWithMaven('swing-demo')
     
     stage 'comparison-jenkins'
-    testWithMaven('comparison/jenkins')
+    testWithGradle('comparison/jenkins')
 }
 
 /**

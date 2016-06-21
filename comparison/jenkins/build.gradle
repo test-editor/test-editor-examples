@@ -64,6 +64,7 @@ dependencies {
 
 def jenkinsFolder = "$buildDir/jenkins"
 def jenkinsHome = "$jenkinsFolder/.jenkins"
+def jenkinsPort = "60080"
 
 task downloadJenkins(type: Download) {
     // TODO would be nice to have Jenkins 2, but setup is a bit more complicated
@@ -88,7 +89,7 @@ clean {
 }
 
 task startJenkins(type: ExecWait, dependsOn: setupJenkins) {
-    command "java -DJENKINS_HOME=$jenkinsHome -jar $jenkinsFolder/jenkins.war"
+    command "java -DJENKINS_HOME=$jenkinsHome -jar $jenkinsFolder/jenkins.war --httpPort=$jenkinsPort "
     ready "Jenkins is fully up and running"
     directory "$buildDir"
     doLast {
@@ -98,6 +99,10 @@ task startJenkins(type: ExecWait, dependsOn: setupJenkins) {
 
 task stopJenkins << {
     startJenkins.stopProcess()
+}
+
+test {
+	systemProperty 'JENKINS_PORT', jenkinsPort
 }
 
 test.dependsOn startJenkins

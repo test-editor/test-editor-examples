@@ -21,7 +21,11 @@ public class JenkinsClient {
 
 	public JenkinsClient() {
 		try {
-			server = new JenkinsServer(new URI("http://localhost:8080/"), "admin", "3c6645a45456c250d26581cc1c52d22b");
+			String port = System.getProperty("JENKINS_PORT", "8080");
+			URI uri = new URI("http://localhost:" + port + "/");
+			logger.info("Using uri='{}' to contact Jenkins.", uri);
+			server = new JenkinsServer(uri, "admin",
+					"3c6645a45456c250d26581cc1c52d22b");
 		} catch (URISyntaxException e) {
 			throw new RuntimeException(e);
 		}
