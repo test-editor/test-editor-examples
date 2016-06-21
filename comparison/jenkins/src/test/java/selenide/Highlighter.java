@@ -1,14 +1,15 @@
 package selenide;
 
+import static com.codeborne.selenide.Selenide.executeJavaScript;
+import static com.codeborne.selenide.Selenide.sleep;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.events.AbstractWebDriverEventListener;
 
-import static com.codeborne.selenide.Selenide.executeJavaScript;
-import static com.codeborne.selenide.Selenide.sleep;
-
 public class Highlighter extends AbstractWebDriverEventListener {
+
     @Override
     public void beforeClickOn(WebElement element, WebDriver driver) {
         highlight(element, "orange");

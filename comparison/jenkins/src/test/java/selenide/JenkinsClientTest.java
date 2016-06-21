@@ -1,7 +1,14 @@
 package selenide;
 
-import com.codeborne.selenide.WebDriverRunner;
-import com.codeborne.selenide.junit.ScreenShooter;
+import static com.codeborne.selenide.Condition.visible;
+import static com.codeborne.selenide.Configuration.baseUrl;
+import static com.codeborne.selenide.Configuration.startMaximized;
+import static com.codeborne.selenide.Configuration.timeout;
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.WebDriverRunner.addListener;
+import static com.codeborne.selenide.WebDriverRunner.closeWebDriver;
+
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Rule;
@@ -12,12 +19,8 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.firefox.internal.ProfilesIni;
 
-import static com.codeborne.selenide.Condition.visible;
-import static com.codeborne.selenide.Configuration.*;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.open;
-import static com.codeborne.selenide.WebDriverRunner.addListener;
-import static com.codeborne.selenide.WebDriverRunner.closeWebDriver;
+import com.codeborne.selenide.WebDriverRunner;
+import com.codeborne.selenide.junit.ScreenShooter;
 
 public class JenkinsClientTest {
 
