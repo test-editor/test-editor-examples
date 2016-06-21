@@ -1,4 +1,4 @@
-package de.signaliduna.showcase.testpyramide;
+package org.testeditor.example.helloworld;
 
 public class HelloWorld {
 

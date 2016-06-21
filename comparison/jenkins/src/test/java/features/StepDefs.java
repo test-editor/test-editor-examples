@@ -2,8 +2,9 @@ package features;
 
 import static org.junit.Assert.assertEquals;
 
+import org.testeditor.example.helloworld.HelloWorld;
+
 import cucumber.api.java8.En;
-import de.signaliduna.showcase.testpyramide.HelloWorld;
 
 public class StepDefs implements En {
     private HelloWorld helloWorld;
