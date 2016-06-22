@@ -1,0 +1,32 @@
+package testeditor.ui.simple
+
+component WebPage is WebPage {
+	click.selectorType restrict to supportedSelectorTypes
+	sendKeys.selectorType restrict to supportedSelectorTypes
+}
+
+component type WebPage {
+	interactions = acceptAlert, open, sendKeys, click
+}
+
+value-space supportedSelectorTypes = #[ "id", "name", "xpath" ]
+
+interaction type acceptAlert {
+	template = "Accept alert"	
+	method = SimpleWebFixture.acceptAlert
+}
+
+interaction type open {
+	template = "Open" ${url}
+	method = SimpleWebFixture.open(url)
+}
+
+interaction type sendKeys {
+	template = "By" ${selectorType} ${selector} "send keys"  ${text}
+	method = SimpleWebFixture.sendKeys(text, selector, selectorType)
+}
+
+interaction type click {
+	template = "By" ${selectorType} ${selector} "click"
+	method = SimpleWebFixture.click(selector, selectorType)
+}

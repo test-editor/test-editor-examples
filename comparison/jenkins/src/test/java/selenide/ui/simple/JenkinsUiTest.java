@@ -1,4 +1,4 @@
-package selenide;
+package selenide.ui.simple;
 
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
@@ -11,14 +11,16 @@ import org.openqa.selenium.By;
 
 import com.codeborne.selenide.junit.ScreenShooter;
 
-public class JenkinsClientTest {
+import fixture.web.CommonWebFixture;
+
+public class JenkinsUiTest {
 
 	private static String JOB_NAME = "demoJob";
 
 	@Rule
 	public ScreenShooter screenShooter = ScreenShooter.failedTests();
 
-	private WebFixture fixture = new WebFixture();
+	private CommonWebFixture fixture = new CommonWebFixture();
 
 	@After
 	public void closeDriver() {

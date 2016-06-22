@@ -1,8 +1,5 @@
 package testeditor.ui
 
-import selenide.WebFixture
-import selenide.LocatorStrategy
-
 element type Button {
 	interactions = click
 }

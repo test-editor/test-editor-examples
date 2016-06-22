@@ -1,4 +1,4 @@
-package selenide;
+package fixture.web;
 
 import static com.codeborne.selenide.Configuration.baseUrl;
 import static com.codeborne.selenide.Configuration.startMaximized;
@@ -7,7 +7,6 @@ import static com.codeborne.selenide.WebDriverRunner.addListener;
 import static com.codeborne.selenide.WebDriverRunner.closeWebDriver;
 
 import org.openqa.selenium.Alert;
-import org.openqa.selenium.By;
 import org.openqa.selenium.Proxy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxBinary;
@@ -18,21 +17,20 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testeditor.fixture.core.interaction.FixtureMethod;
-import static com.codeborne.selenide.Selenide.$;
 
-import com.codeborne.selenide.Selenide;
-import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebDriverRunner;
 
-public class WebFixture {
+import selenide.ui.simple.Highlighter;
 
-	private static WebDriver driver;
+public class CommonWebFixture {
 
-	public WebFixture() {
+	protected static WebDriver driver;
+
+	public CommonWebFixture() {
 		init();
 	}
 
-	private void init() {
+	protected void init() {
 		timeout = 5000;
 		String port = System.getProperty("JENKINS_PORT", "60080");
 		baseUrl = "http://localhost:" + port;
@@ -65,35 +63,5 @@ public class WebFixture {
 	public void acceptAlert() {
 		driver.switchTo().alert().accept();
 	}
-
-	@FixtureMethod
-	public void open(String url) {
-		Selenide.open(url);
-	}
 	
-	@FixtureMethod
-	public void sendKeys(String text, String locator, LocatorStrategy locatorStrategy) {
-		SelenideElement element = getElement(locator, locatorStrategy);
-		element.sendKeys(text);
-	}
-
-	@FixtureMethod
-	public void click(String locator, LocatorStrategy locatorStrategy) {
-		SelenideElement element = getElement(locator, locatorStrategy);
-		element.click();
-	}
-
-	private SelenideElement getElement(String locator, LocatorStrategy locatorStrategy) {
-		switch (locatorStrategy) {
-		case ID:
-			return $(By.id(locator));
-		case NAME:
-			return $(By.name(locator));
-		case XPATH:
-			return $(By.xpath(locator));
-		default:
-			throw new IllegalArgumentException("Unknown locatorStrategy: " + locatorStrategy);
-		}
-	}
-
 }

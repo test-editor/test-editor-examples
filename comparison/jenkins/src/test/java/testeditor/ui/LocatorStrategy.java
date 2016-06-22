@@ -1,4 +1,4 @@
-package selenide;
+package testeditor.ui;
 
 public enum LocatorStrategy {
 

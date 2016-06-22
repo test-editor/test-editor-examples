@@ -1,9 +1,9 @@
 package testeditor.ui
 
-import selenide.*
-	import selenide.LocatorStrategy
+import testeditor.ui.LocatorStrategy
 
 component LoginPage is WebPage {
+
 	element User is Text {
 		locator = "j_username"
 		locatorStrategy = NAME
@@ -18,6 +18,7 @@ component LoginPage is WebPage {
 		locator = "yui-gen1-button"
 		locatorStrategy = ID
 	}
+
 }
 
 component CreateJobPage is WebPage {

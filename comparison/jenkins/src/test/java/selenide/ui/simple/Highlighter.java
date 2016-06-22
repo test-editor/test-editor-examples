@@ -1,4 +1,4 @@
-package selenide;
+package selenide.ui.simple;
 
 import static com.codeborne.selenide.Selenide.executeJavaScript;
 import static com.codeborne.selenide.Selenide.sleep;

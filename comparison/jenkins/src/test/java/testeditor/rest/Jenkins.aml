@@ -1,8 +1,8 @@
-package testeditor
+package testeditor.rest
 
-import org.testeditor.example.jenkins.*
+import fixture.rest.*
 
-component JenkinsInstance is Jenkins {
+component JenkinsClient is Jenkins {
 }
 
 component type Jenkins {

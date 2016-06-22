@@ -1,4 +1,4 @@
-package org.testeditor.example.jenkins;
+package fixture.rest;
 
 import java.io.IOException;
 import java.net.URI;
@@ -17,18 +17,24 @@ public class JenkinsClient {
 
 	private static Logger logger = LoggerFactory.getLogger(JenkinsClient.class);
 
+	private String url;
 	private JenkinsServer server;
 
 	public JenkinsClient() {
 		try {
 			String port = System.getProperty("JENKINS_PORT", "60080");
-			URI uri = new URI("http://localhost:" + port + "/");
+			url = "http://localhost:" + port + "/";
+			URI uri = new URI(url);
 			logger.info("Using uri='{}' to contact Jenkins.", uri);
 			server = new JenkinsServer(uri, "admin",
 					"3c6645a45456c250d26581cc1c52d22b");
 		} catch (URISyntaxException e) {
 			throw new RuntimeException(e);
 		}
+	}
+	
+	public String getUrl() {
+		return url;
 	}
 
 	@FixtureMethod
