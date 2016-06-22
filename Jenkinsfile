@@ -3,15 +3,19 @@ nodeWithProperWorkspace {
     checkout scm
     sh "git clean -ffdx"
 
-    stage 'swing-demo'
-    testWithGradle('swing-demo')
-    testWithMaven('swing-demo')
-    
-    stage 'comparison-jenkins'
-    testWithGradle('comparison/jenkins')
-    
-    stage 'Archive results'
-    step([$class: 'JUnitResultArchiver', testResults: '**/TEST-*.xml'])
+    try {
+        stage 'swing-demo'
+        testWithGradle('swing-demo')
+        testWithMaven('swing-demo')
+        
+        stage 'comparison-jenkins'
+        testWithGradle('comparison/jenkins')
+    } catch (err) {
+        currentBuild.result = "FAILED"
+    } finally {
+        stage 'Archive results'
+        step([$class: 'JUnitResultArchiver', testResults: '**/TEST-*.xml'])
+    }
 }
 
 /**
