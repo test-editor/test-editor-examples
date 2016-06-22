@@ -21,7 +21,7 @@ public class JenkinsClient {
 
 	public JenkinsClient() {
 		try {
-			String port = System.getProperty("JENKINS_PORT", "8080");
+			String port = System.getProperty("JENKINS_PORT", "60080");
 			URI uri = new URI("http://localhost:" + port + "/");
 			logger.info("Using uri='{}' to contact Jenkins.", uri);
 			server = new JenkinsServer(uri, "admin",
