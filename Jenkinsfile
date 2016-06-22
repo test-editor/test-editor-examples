@@ -9,6 +9,9 @@ nodeWithProperWorkspace {
     
     stage 'comparison-jenkins'
     testWithGradle('comparison/jenkins')
+    
+    stage 'Archive results'
+    step([$class: 'JUnitResultArchiver', testResults: '**/TEST-*.xml'])
 }
 
 /**
