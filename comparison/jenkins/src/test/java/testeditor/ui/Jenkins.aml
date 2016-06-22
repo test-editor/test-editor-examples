@@ -1,0 +1,67 @@
+package testeditor.ui
+
+import selenide.*
+	import selenide.LocatorStrategy
+
+component LoginPage is WebPage {
+	element User is Text {
+		locator = "j_username"
+		locatorStrategy = NAME
+	}
+	
+	element Password is Text {
+		locator = "j_password"
+		locatorStrategy = NAME
+	}
+	
+	element Login is Button {
+		locator = "yui-gen1-button"
+		locatorStrategy = ID
+	}
+}
+
+component CreateJobPage is WebPage {
+	element Name is Text {
+		locator = "name"
+		locatorStrategy = ID
+	}
+	element FreeStyleProject is RadioItem {
+		locator = "//input[@value='hudson.model.FreeStyleProject']"
+		locatorStrategy = XPATH
+	}
+	element MavenProject is RadioItem {
+		locator = "//input[@value='hudson.maven.MavenModuleSet']"
+		locatorStrategy = XPATH
+	}
+	element ExternalJob is RadioItem {
+		locator = "//input[@value='hudson.model.ExternalJob']"
+		locatorStrategy = XPATH
+	}
+	element MatrixProject is RadioItem {
+		locator = "//input[@value='hudson.matrix.MatrixProject']"
+		locatorStrategy = XPATH
+	}
+	element Ok is Button {
+		locator = "ok-button"
+		locatorStrategy = ID
+	}
+}
+
+component ConfigureJobPage is WebPage {
+	element Save is Button {
+		locator = "//span[@name='Submit']//button[1]"
+		locatorStrategy = XPATH
+	}
+}
+
+component JobOverviewPage is WebPage {
+	element Delete is Button {
+		locator = "//a[contains(@onclick,'doDelete')]"
+		locatorStrategy = XPATH
+	}
+}
+
+component type WebPage {
+	interactions = open, acceptAlert
+}
+

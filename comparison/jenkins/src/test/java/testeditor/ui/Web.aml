@@ -1,0 +1,41 @@
+package testeditor.ui
+
+import selenide.WebFixture
+import selenide.LocatorStrategy
+
+element type Button {
+	interactions = click
+}
+
+element type Text {
+	interactions = sendKeys
+}
+
+element type RadioItem {
+	interactions = select
+}
+
+interaction type acceptAlert {
+	template = "Confirm alert"	
+	method = WebFixture.acceptAlert
+}
+
+interaction type open {
+	template = "Open url" ${url}
+	method = WebFixture.open(url)
+}
+
+interaction type sendKeys {
+	template = "Enter" ${text} "into field" ${element}
+	method = WebFixture.sendKeys(text, element, locatorStrategy)
+}
+
+interaction type click {
+	template = "Click on" ${element}
+	method = WebFixture.click(element, locatorStrategy)
+}
+
+interaction type select {
+	template = "Select item" ${element}
+	method = WebFixture.click(element, locatorStrategy)
+}
