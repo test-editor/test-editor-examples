@@ -1,5 +1,6 @@
 package org.testeditor.example.jenkins
 
+import fixture.rest.JenkinsClient
 import spock.lang.Specification
 import spock.lang.Timeout
 
