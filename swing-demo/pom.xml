@@ -123,7 +123,7 @@
 					<artifactId>testeditor-maven-plugin</artifactId>
 					<version>1.0</version>
 					<configuration>
-						<testEditorVersion>1.1.0</testEditorVersion>
+						<testEditorVersion>${testeditor.version}</testEditorVersion>
 						<testEditorOutput>${testeditor.output}</testEditorOutput>
 					</configuration>
 					<executions>
