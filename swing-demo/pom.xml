@@ -16,9 +16,6 @@
 		<maven-resources-plugin.version>2.7</maven-resources-plugin.version>
 		<maven-compiler-plugin.version>3.3</maven-compiler-plugin.version>
 
-		<xtext.version>2.9.2</xtext.version>
-		<xtend.version>${xtext.version}</xtend.version>
-
 		<testeditor.version>1.1.0</testeditor.version>
 		<testeditor.output>src-gen/test/java</testeditor.output>
 	</properties>
@@ -40,32 +37,37 @@
 			<name>bintray</name>
 			<url>http://dl.bintray.com/test-editor/Fixtures</url>
 		</repository>
+		<!-- TODO remove this old repository once 1.2.0 is released and used here -->
 		<repository>
 			<snapshots>
 				<enabled>false</enabled>
 			</snapshots>
-			<id>bintray-test-editor-maven</id>
+			<id>bintray-test-editor-maven-old</id>
 			<name>bintray</name>
 			<url>http://dl.bintray.com/test-editor/test-editor-maven</url>
 		</repository>
 	</repositories>
 	<pluginRepositories>
+		<!-- TODO remove this old repository once 1.2.0 is released and used here -->
+		<pluginRepository>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+			<id>bintray-test-editor-maven-old</id>
+			<name>bintray-plugins</name>
+			<url>http://dl.bintray.com/test-editor/test-editor-maven</url>
+		</pluginRepository>
 		<pluginRepository>
 			<snapshots>
 				<enabled>false</enabled>
 			</snapshots>
 			<id>bintray-test-editor-maven</id>
-			<name>bintray-plugins</name>
-			<url>http://dl.bintray.com/test-editor/test-editor-maven</url>
+			<name>bintray</name>
+			<url>http://dl.bintray.com/test-editor/maven</url>
 		</pluginRepository>
 	</pluginRepositories>
 
 	<dependencies>
-		<dependency>
-			<groupId>org.eclipse.xtend</groupId>
-			<artifactId>org.eclipse.xtend.lib</artifactId>
-			<version>${xtend.version}</version>
-		</dependency>
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
@@ -117,9 +119,13 @@
 					</configuration>
 				</plugin>
 				<plugin>
-					<groupId>org.eclipse.xtext</groupId>
-					<artifactId>xtext-maven-plugin</artifactId>
-					<version>${xtext.version}</version>
+					<groupId>org.testeditor</groupId>
+					<artifactId>testeditor-maven-plugin</artifactId>
+					<version>1.0</version>
+					<configuration>
+						<testEditorVersion>${testeditor.version}</testEditorVersion>
+						<testEditorOutput>${testeditor.output}</testEditorOutput>
+					</configuration>
 					<executions>
 						<execution>
 							<goals>
@@ -127,83 +133,6 @@
 							</goals>
 						</execution>
 					</executions>
-					<configuration>
-						<sourceRoots>
-							<sourceRoot>src/test/java</sourceRoot>
-							<sourceRoot>src/main/java</sourceRoot>
-						</sourceRoots>
-						<languages>
-							<language>
-								<setup>org.testeditor.tsl.dsl.TslStandaloneSetup</setup>
-							</language>
-							<language>
-								<setup>org.testeditor.tml.dsl.TmlStandaloneSetup</setup>
-							</language>
-							<language>
-								<setup>org.testeditor.tcl.dsl.TclStandaloneSetup</setup>
-								<outputConfigurations>
-									<outputConfiguration>
-										<outputDirectory>${testeditor.output}</outputDirectory>
-									</outputConfiguration>
-								</outputConfigurations>
-							</language>
-							<language>
-								<setup>org.testeditor.aml.dsl.AmlStandaloneSetup</setup>
-							</language>
-						</languages>
-					</configuration>
-					<dependencies>
-						<dependency>
-							<groupId>org.testeditor</groupId>
-							<artifactId>org.testeditor.dsl.common</artifactId>
-							<version>${testeditor.version}</version>
-						</dependency>
-						<dependency>
-							<groupId>org.testeditor</groupId>
-							<artifactId>org.testeditor.tsl.model</artifactId>
-							<version>${testeditor.version}</version>
-						</dependency>
-						<dependency>
-							<groupId>org.testeditor</groupId>
-							<artifactId>org.testeditor.tsl.dsl</artifactId>
-							<version>${testeditor.version}</version>
-						</dependency>
-						<dependency>
-							<groupId>org.testeditor</groupId>
-							<artifactId>org.testeditor.tml.model</artifactId>
-							<version>${testeditor.version}</version>
-						</dependency>
-						<dependency>
-							<groupId>org.testeditor</groupId>
-							<artifactId>org.testeditor.tml.dsl</artifactId>
-							<version>${testeditor.version}</version>
-						</dependency>
-						<dependency>
-							<groupId>org.testeditor</groupId>
-							<artifactId>org.testeditor.tcl.model</artifactId>
-							<version>${testeditor.version}</version>
-						</dependency>
-						<dependency>
-							<groupId>org.testeditor</groupId>
-							<artifactId>org.testeditor.tcl.dsl</artifactId>
-							<version>${testeditor.version}</version>
-						</dependency>
-						<dependency>
-							<groupId>org.testeditor</groupId>
-							<artifactId>org.testeditor.aml.model</artifactId>
-							<version>${testeditor.version}</version>
-						</dependency>
-						<dependency>
-							<groupId>org.testeditor</groupId>
-							<artifactId>org.testeditor.aml.dsl</artifactId>
-							<version>${testeditor.version}</version>
-						</dependency>
-					</dependencies>
-				</plugin>
-				<plugin>
-					<groupId>org.eclipse.xtend</groupId>
-					<artifactId>xtend-maven-plugin</artifactId>
-					<version>${xtend.version}</version>
 				</plugin>
 				<plugin>
 					<groupId>org.jacoco</groupId>
@@ -228,35 +157,12 @@
 		</pluginManagement>
 		<plugins>
 			<plugin>
-				<groupId>org.eclipse.xtext</groupId>
-				<artifactId>xtext-maven-plugin</artifactId>
-			</plugin>
-			<plugin>
-				<groupId>org.eclipse.xtend</groupId>
-				<artifactId>xtend-maven-plugin</artifactId>
+				<groupId>org.testeditor</groupId>
+				<artifactId>testeditor-maven-plugin</artifactId>
 			</plugin>
 			<plugin>
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
-			</plugin>
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>build-helper-maven-plugin</artifactId>
-				<version>1.7</version>
-				<executions>
-					<execution>
-						<id>add-test-source</id>
-						<phase>generate-test-sources</phase>
-						<goals>
-							<goal>add-test-source</goal>
-						</goals>
-						<configuration>
-							<sources>
-								<source>${testeditor.output}</source>
-							</sources>
-						</configuration>
-					</execution>
-				</executions>
 			</plugin>
 		</plugins>
 	</build>
