@@ -16,7 +16,7 @@
 		<maven-resources-plugin.version>2.7</maven-resources-plugin.version>
 		<maven-compiler-plugin.version>3.3</maven-compiler-plugin.version>
 
-		<testeditor.version>1.1.0</testeditor.version>
+		<testeditor.version>1.2.0</testeditor.version>
 		<testeditor.output>src-gen/test/java</testeditor.output>
 	</properties>
 
@@ -37,26 +37,8 @@
 			<name>bintray</name>
 			<url>http://dl.bintray.com/test-editor/Fixtures</url>
 		</repository>
-		<!-- TODO remove this old repository once 1.2.0 is released and used here -->
-		<repository>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-			<id>bintray-test-editor-maven-old</id>
-			<name>bintray</name>
-			<url>http://dl.bintray.com/test-editor/test-editor-maven</url>
-		</repository>
 	</repositories>
 	<pluginRepositories>
-		<!-- TODO remove this old repository once 1.2.0 is released and used here -->
-		<pluginRepository>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-			<id>bintray-test-editor-maven-old</id>
-			<name>bintray-plugins</name>
-			<url>http://dl.bintray.com/test-editor/test-editor-maven</url>
-		</pluginRepository>
 		<pluginRepository>
 			<snapshots>
 				<enabled>false</enabled>
@@ -121,7 +103,7 @@
 				<plugin>
 					<groupId>org.testeditor</groupId>
 					<artifactId>testeditor-maven-plugin</artifactId>
-					<version>1.0</version>
+					<version>1.1</version>
 					<configuration>
 						<testEditorVersion>${testeditor.version}</testEditorVersion>
 						<testEditorOutput>${testeditor.output}</testEditorOutput>
