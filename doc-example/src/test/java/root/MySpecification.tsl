@@ -1,0 +1,7 @@
+package root
+
+# MySpecification
+
+* Open application and navigate to the question of life
+* Enter the question
+* Validate the correct answer to be _42_

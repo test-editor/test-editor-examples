@@ -1,0 +1,76 @@
+package root
+
+import static root.MyLocatorStrategy.*
+
+value-space ValidQuestions = #[ "What's the meaning of life?", "Who the f**k is Alice?" ]
+value-space ValidAge = 0..199
+value-space ValidInteger = "[0-9]+"
+
+interaction type Reload {
+	template = "Reload"
+	method = MyApplicationFixture.ReloadPage()
+}
+
+interaction type EnterIntoTextField {
+  template = "Enter" ${text} "into" ${element}
+  method = MyApplicationFixture.EnterIntoTextField(text, element, locatorStrategy)
+}
+
+interaction type ReadTextField {
+  template = "Read" ${element}
+  method = MyApplicationFixture.ReadFromTextField(element, locatorStrategy)
+}
+
+interaction type ClearTextField {
+	template = "Clear" ${element}
+	method = MyApplicationFixture.ClearTextField(element, locatorStrategy)
+}
+
+element type TextField {
+  interactions = ReadTextField, EnterIntoTextField, ClearTextField
+}
+
+interaction type Click {
+	template = "Click" ${element}
+	method = MyApplicationFixture.Click(element, locatorStrategy)
+}
+
+element type Button {
+	interactions = Click
+}
+
+component type WebPage {
+	interactions = Reload
+}
+
+component QOLPage is WebPage {
+	element QuestionField is TextField locate by NAME using "QTEXT_FIELD" restrict EnterIntoTextField.text to ValidQuestions
+    element AnswerField is TextField locate by ID using "4711"
+    element AskButton is Button locate by ID using "8000"	
+}
+
+interaction type StartBrowser {
+	template = "Start browser" ${path}
+	method = MyApplicationFixture.StartBrowser(path)
+}
+
+interaction type CloseBrowser {
+	template = "Close browser"
+	method = MyApplicationFixture.CloseBrowser()
+}
+
+interaction type Initialize {
+	template = "Initialize"
+	method = MyApplicationFixture.Initialize()
+}
+
+interaction type NavigateTo {
+	template = "Navigate to" ${url}
+	method = MyApplicationFixture.NavigateTo(url)
+}
+component type WebBrowser {
+	interactions = StartBrowser, CloseBrowser, Initialize, NavigateTo
+}
+
+component Browser is WebBrowser {	
+}

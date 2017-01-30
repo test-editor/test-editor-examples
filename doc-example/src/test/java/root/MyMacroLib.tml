@@ -1,0 +1,10 @@
+package root
+
+# MyMacroLib
+
+## AskQuestion
+template = "Ask" ${question} 
+  Component: QOLPage
+  - Enter @question into <QuestionField>
+  - Click <AskButton>
+
