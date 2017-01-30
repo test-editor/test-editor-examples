@@ -24,4 +24,3 @@ config MyFirstConfig
   Component: QOLPage
   - answer = Read <AnswerField>
   - assert answer = "42"
-
