@@ -6,6 +6,9 @@ nodeWithProperWorkspace {
     stage 'swing-demo'
     testWithGradle('swing-demo')
     testWithMaven('swing-demo')
+
+    stage 'doc-example'
+    testWithMaven('doc-example')
 }
 
 /**

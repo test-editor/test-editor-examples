@@ -1,0 +1,11 @@
+#+title: doc-example
+This is an example project from which code snippets are used for documenting the test editor domain specific languages tsl, tcl and aml.
+* Maven
+  build and execute tests
+  #+BEGIN_SRC sh
+  mvn clean install
+  #+END_SRC
+  import as project
+  #+BEGIN_SRC sh
+  mvn eclipse:eclipse
+  #+END_SRC
