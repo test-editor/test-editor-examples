@@ -24,7 +24,6 @@ public class ManualTest {
 	@Before
 	public void setup() throws Exception {
 		greetingFixture.start();
-		greetingFixture.sleep(2000);
 	}
 
 	@After
@@ -36,7 +35,7 @@ public class ManualTest {
 	public void withRestAssured() throws Exception {
 		// given
 		RestAssured.baseURI = "http://localhost";
-		RestAssured.port = 8080;
+		RestAssured.port = greetingFixture.getPort();
 		given().param("name", "Mark")
 
 		// when
@@ -49,8 +48,9 @@ public class ManualTest {
 	@Test
 	public void withUnirest() throws UnirestException {
 		// given
-		 HttpRequest request = Unirest.get("http://localhost:8080/greeting").queryString("name", "Mark");
-		
+		String url = String.format("http://localhost:%s/greeting", greetingFixture.getPort());
+		HttpRequest request = Unirest.get(url).queryString("name", "Mark");
+
 		// when
 		HttpResponse<JsonNode> json = request.asJson();
 

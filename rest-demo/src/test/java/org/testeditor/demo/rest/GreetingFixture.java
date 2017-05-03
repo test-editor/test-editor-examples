@@ -1,5 +1,6 @@
 package org.testeditor.demo.rest;
 
+import org.junit.Assert;
 import org.testeditor.fixture.core.interaction.FixtureMethod;
 
 public class GreetingFixture {
@@ -12,12 +13,21 @@ public class GreetingFixture {
 		application = new GreetingApplication();
 		thread = new Thread(() -> {
 			try {
-				application.run("server");
+				application.run("server", "config.yml");
 			} catch (Exception e) {
 				throw new RuntimeException(e);
 			}
 		});
 		thread.start();
+		waitForApplicationToStart();
+	}
+
+	private void waitForApplicationToStart() throws InterruptedException {
+		int counter = 0;
+		while (!application.isStarted() && counter++ <= 20) {
+			sleep(200);
+		}
+		Assert.assertTrue("Application is not started.", application.isStarted());
 	}
 
 	@FixtureMethod
@@ -29,6 +39,10 @@ public class GreetingFixture {
 	@FixtureMethod
 	public void sleep(int millis) throws InterruptedException {
 		Thread.sleep(millis);
+	}
+
+	public int getPort() {
+		return application.getHttpPort();
 	}
 
 }
