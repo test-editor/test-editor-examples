@@ -1,0 +1,36 @@
+plugins {
+    id 'org.testeditor.gradle-plugin' version '0.6'
+    id 'maven'
+    id 'eclipse'
+}
+
+group = 'org.testeditor.demo'
+version = '1.0.0-SNAPSHOT'
+
+// In this section you declare where to find the dependencies of your project
+repositories {
+    jcenter()
+    maven { url "http://dl.bintray.com/test-editor/Fixtures" }
+    maven { url "http://dl.bintray.com/test-editor/maven/" }
+}
+
+// Configure the testeditor plugin
+testeditor {
+	version '1.5.0'
+}
+
+test.testLogging.showStandardStreams = true
+test.testLogging.exceptionFormat = 'full'
+
+// In this section you declare the dependencies for your production and test code
+dependencies {
+    compile 'io.dropwizard:dropwizard-core:1.1.0'
+    testCompile 'org.testeditor.fixture:core-fixture:3.1.0'
+    testCompile 'io.rest-assured:rest-assured:3.0.2'
+    testCompile 'com.mashape.unirest:unirest-java:1.4.9'
+    testCompile 'junit:junit:4.12'
+}
+
+configurations {
+    runtime.exclude group: "org.apache.logging.log4j"
+}
