@@ -1,5 +1,5 @@
 plugins {
-    id 'org.testeditor.gradle-plugin' version '0.4'
+    id 'org.testeditor.gradle-plugin' version '0.6'
     id 'maven'
     id 'eclipse'
 }
@@ -16,7 +16,7 @@ repositories {
 
 // Configure the testeditor plugin
 testeditor {
-	version '1.2.0'
+	version '1.5.0'
 }
 
 // In this section you declare the dependencies for your production and test code
