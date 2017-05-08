@@ -1,4 +1,4 @@
-package org.testeditor.demo.rest;
+package org.testeditor.demo.rest.manual;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
@@ -8,6 +8,7 @@ import org.apache.http.HttpStatus;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.testeditor.demo.rest.GreetingFixture;
 
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
@@ -34,8 +35,7 @@ public class ManualTest {
 	@Test
 	public void withRestAssured() throws Exception {
 		// given
-		RestAssured.baseURI = "http://localhost";
-		RestAssured.port = greetingFixture.getPort();
+		RestAssured.basePath = greetingFixture.getBaseUrl();
 		given().param("name", "Mark")
 
 		// when
@@ -48,8 +48,8 @@ public class ManualTest {
 	@Test
 	public void withUnirest() throws UnirestException {
 		// given
-		String url = String.format("http://localhost:%s/greeting", greetingFixture.getPort());
-		HttpRequest request = Unirest.get(url).queryString("name", "Mark");
+		String greetingPath = greetingFixture.getBaseUrl() + "/greeting";
+		HttpRequest request = Unirest.get(greetingPath).queryString("name", "Mark");
 
 		// when
 		HttpResponse<JsonNode> json = request.asJson();
@@ -58,5 +58,5 @@ public class ManualTest {
 		assertEquals(HttpStatus.SC_OK, json.getStatus());
 		assertEquals("Hello, Mark!", json.getBody().getObject().get("content"));
 	}
-
+	
 }

@@ -41,8 +41,9 @@ public class GreetingFixture {
 		Thread.sleep(millis);
 	}
 
-	public int getPort() {
-		return application.getHttpPort();
+	@FixtureMethod
+	public String getBaseUrl() {
+		return "http://localhost:" + application.getHttpPort();
 	}
-
+	
 }
