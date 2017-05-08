@@ -2,17 +2,23 @@ package org.testeditor.demo.rest.resources;
 
 import java.util.concurrent.atomic.AtomicLong;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 import org.testeditor.demo.rest.api.Greeting;
+import org.testeditor.demo.rest.api.Person;
 
 import com.codahale.metrics.annotation.Timed;
 
 @Path("/greeting")
+@Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class GreetingResource {
 
@@ -23,6 +29,18 @@ public class GreetingResource {
 	public Greeting sayHello(@QueryParam("name") String name) {
 		final String value = "Hello, " + name + "!";
 		return new Greeting(counter.incrementAndGet(), value);
+	}
+
+	@POST
+	@Timed
+	public Greeting askAboutTheWeather(@NotNull @Valid Person person) {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Hi, ");
+		builder.append(person.getFirstName());
+		builder.append("! How is the weather in ");
+		builder.append(person.getAddress().getCity());
+		builder.append("?");
+		return new Greeting(counter.incrementAndGet(), builder.toString());
 	}
 
 }
