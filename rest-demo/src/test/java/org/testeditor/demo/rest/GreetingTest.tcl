@@ -1,0 +1,14 @@
+package org.testeditor.demo.rest
+
+# GreetingTest
+
+config GreetingSetup
+
+* Start
+
+	Component: GreetingApp
+	- request = Create request to <GreetingEndpoint>
+	- Set query parameter "name" to "Peter" on @request
+	- response = Send request @request
+	- result = Get body of @response
+	- assert result.content = "Hello, Peter!"

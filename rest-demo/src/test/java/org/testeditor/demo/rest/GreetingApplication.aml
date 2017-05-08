@@ -1,0 +1,41 @@
+package org.testeditor.demo.rest
+
+import com.mashape.unirest.http.HttpMethod
+
+component GreetingApp is DropWizardWebService {
+
+	element GreetingEndpoint is RestEndpoint {
+		locator = "/greeting"
+		locatorStrategy = HttpMethod.GET
+	}
+	
+	element AskAboutTheWeather is RestEndpoint {
+		locator = "/greeting"
+		locatorStrategy = HttpMethod.POST
+	}
+
+}
+
+component type DropWizardWebService {
+	interactions = start, stop, sleep, getBaseUrl, setBaseUrl, readJson, logJson
+}
+
+interaction type start {
+	template = "Start application"
+	method = GreetingFixture.start
+}
+
+interaction type stop {
+	template = "Stop application"
+	method = GreetingFixture.stop
+}
+
+interaction type sleep {
+	template = "Sleep for" ${millis} "milliseconds"
+	method = GreetingFixture.sleep(millis)
+}
+
+interaction type getBaseUrl {
+	template = "Get base url"
+	method = GreetingFixture.getBaseUrl()
+} 
