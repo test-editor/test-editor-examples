@@ -11,7 +11,11 @@ config GreetingSetup
 	- request = Create request to <GreetTeam>
 	- json = Read json from "example-team.json"
 	- json.name = "Hero Team"
-	- json.members[1].firstName = "Maximus" 
+	- json.members[0] = {
+		"firstName": "Aurelia",
+		"lastName": "Yoxall"
+	  }
+	- json.members[1].firstName = "Maximus"
 	- Set body of @request to @json
 
 	// when
@@ -19,4 +23,4 @@ config GreetingSetup
 
 	// then
 	- result = Get body of @response
-	- assert result.content = "Hello team Hero Team. Warm regards to Peter, Maximus!"
+	- assert result.content = "Hello team Hero Team. Warm regards to Aurelia, Maximus!"
