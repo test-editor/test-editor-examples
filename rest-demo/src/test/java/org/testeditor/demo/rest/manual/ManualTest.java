@@ -35,7 +35,7 @@ public class ManualTest {
 	@Test
 	public void withRestAssured() throws Exception {
 		// given
-		RestAssured.basePath = greetingFixture.getBaseUrl();
+		RestAssured.baseURI = greetingFixture.getBaseUrl();
 		given().param("name", "Mark")
 
 		// when
