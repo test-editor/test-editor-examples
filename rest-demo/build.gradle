@@ -1,5 +1,5 @@
 plugins {
-    id 'org.testeditor.gradle-plugin' version '0.6'
+    id 'org.testeditor.gradle-plugin' version '0.8'
     id 'maven'
     id 'eclipse'
 }
@@ -18,10 +18,6 @@ repositories {
 // Configure the testeditor plugin
 testeditor {
 	version '1.6.0-SNAPSHOT'
-}
-
-xtext {
-	version '2.11.0'
 }
 
 test.testLogging.showStandardStreams = true

@@ -7,7 +7,7 @@ config GreetingSetup
 * Start
 
 	Component: GreetingApp
-	- request = Create request to <GreetingEndpoint>
+	- request = Create request to <SayHello>
 	- Set query parameter "name" to "Peter" on @request
 	- response = Send request @request
 	- result = Get body of @response

@@ -1,6 +1,6 @@
 package org.testeditor.demo.rest
 
-# GreetingWeatherTest
+# GreetTeamTest
 
 config GreetingSetup
 
@@ -8,8 +8,8 @@ config GreetingSetup
 
 	Component: GreetingApp
 	// given
-	- request = Create request to <AskAboutTheWeather>
-	- json = Read json from "sample-request.json"
+	- request = Create request to <GreetTeam>
+	- json = Read json from "example-team.json"
 	- Set body of @request to @json
 
 	// when
@@ -17,4 +17,4 @@ config GreetingSetup
 
 	// then
 	- result = Get body of @response
-	- assert result.content = "Hi, Peter! How is the weather in Neverland?"
+	- assert result.content = "Hello team Example Team. Warm regards to Peter, Max!"

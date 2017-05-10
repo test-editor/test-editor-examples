@@ -6,7 +6,6 @@ public class Person {
 
 	@NotNull private String firstName;
 	@NotNull private String lastName;
-	@NotNull private SimpleAddress address;
 
 	public String getFirstName() {
 		return firstName;
@@ -22,14 +21,6 @@ public class Person {
 
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
-	}
-
-	public SimpleAddress getAddress() {
-		return address;
-	}
-
-	public void setAddress(SimpleAddress address) {
-		this.address = address;
 	}
 
 }

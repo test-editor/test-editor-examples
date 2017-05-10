@@ -4,12 +4,12 @@ import com.mashape.unirest.http.HttpMethod
 
 component GreetingApp is DropWizardWebService {
 
-	element GreetingEndpoint is RestEndpoint {
+	element SayHello is RestEndpoint {
 		locator = "/greeting"
 		locatorStrategy = HttpMethod.GET
 	}
 	
-	element AskAboutTheWeather is RestEndpoint {
+	element GreetTeam is RestEndpoint {
 		locator = "/greeting"
 		locatorStrategy = HttpMethod.POST
 	}
