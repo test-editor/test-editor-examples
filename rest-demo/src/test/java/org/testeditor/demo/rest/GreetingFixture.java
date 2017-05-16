@@ -1,12 +1,25 @@
 package org.testeditor.demo.rest;
 
 import org.junit.Assert;
+import org.testeditor.demo.rest.GreetingApplication;
 import org.testeditor.fixture.core.interaction.FixtureMethod;
+
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import com.mashape.unirest.http.Unirest;
+import com.mashape.unirest.http.exceptions.UnirestException;
+import com.mashape.unirest.request.HttpRequest;
 
 public class GreetingFixture {
 
 	private Thread thread;
 	private GreetingApplication application;
+
+	@FixtureMethod
+	public JsonObject greet(String name) throws UnirestException {
+		HttpRequest request = Unirest.get(getBaseUrl() + "/greeting").queryString("name", "Mark");
+		return new JsonParser().parse(request.asString().getBody()).getAsJsonObject();
+	}
 
 	@FixtureMethod
 	public void start() throws Exception {

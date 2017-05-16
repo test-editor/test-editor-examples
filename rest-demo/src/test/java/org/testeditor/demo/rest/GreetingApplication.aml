@@ -1,5 +1,6 @@
 package org.testeditor.demo.rest
 
+import org.testeditor.fixture.rest.*
 import com.mashape.unirest.http.HttpMethod
 
 component GreetingApp is DropWizardWebService {
@@ -17,7 +18,7 @@ component GreetingApp is DropWizardWebService {
 }
 
 component type DropWizardWebService {
-	interactions = start, stop, sleep, getBaseUrl, setBaseUrl, readJson, logJson
+	interactions = start, stop, sleep, getBaseUrl, setBaseUrl
 }
 
 interaction type start {
@@ -38,4 +39,4 @@ interaction type sleep {
 interaction type getBaseUrl {
 	template = "Get base url"
 	method = GreetingFixture.getBaseUrl()
-} 
+}
