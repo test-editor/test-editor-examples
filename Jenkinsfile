@@ -1,11 +1,17 @@
 nodeWithProperWorkspace {
-    stage 'Checkout'
-    checkout scm
-    sh "git clean -ffdx"
+    stage('Checkout') {
+        checkout scm
+        sh "git clean -ffdx"
+    }
 
-    stage 'swing-demo'
-    testWithGradle('swing-demo')
-    testWithMaven('swing-demo')
+    stage('swing-demo') {
+        testWithGradle('swing-demo')
+        testWithMaven('swing-demo')
+    }
+
+    stage('rest-demo') {
+        testWithGradle('rest-demo')
+    }
 }
 
 /**

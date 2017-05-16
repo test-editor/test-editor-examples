@@ -1,0 +1,13 @@
+{
+	"name": "Example Team",
+	"members": [
+		{
+			"firstName": "Peter",
+			"lastName": "Pan"
+		},
+		{
+			"firstName": "Max",
+			"lastName": "Mustermann"
+		}
+	]
+}
