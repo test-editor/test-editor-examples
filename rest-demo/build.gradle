@@ -1,5 +1,5 @@
 plugins {
-    id 'org.testeditor.gradle-plugin' version '0.13'
+    id 'org.testeditor.gradle-plugin' version '0.14'
     id 'maven'
     id 'eclipse'
 }
